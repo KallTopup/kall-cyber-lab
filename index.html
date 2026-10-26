@@ -2,536 +2,358 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#070910">
-<title>KALL CYBER LAB</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#080912">
+<title>KALL CYBER LAB PRO</title>
 
 <style>
-* {
-  box-sizing: border-box;
-}
-
-body {
-  margin: 0;
-  background: #070910;
-  color: #e8f4ff;
-  font-family: Consolas, monospace;
-}
-
-canvas {
-  position: fixed;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  opacity: .17;
-  z-index: 0;
-  pointer-events: none;
-}
-
-main {
-  position: relative;
-  z-index: 1;
-  width: min(900px, 92%);
-  margin: auto;
-  padding: 35px 0;
-}
-
-header {
-  text-align: center;
-  padding: 35px 10px;
-}
-
-.logo {
-  font-size: clamp(30px, 8vw, 55px);
-  font-weight: 900;
-  letter-spacing: 4px;
-  text-shadow: 0 0 18px #168bff;
-}
-
-.logo span {
-  color: #ff244f;
-  text-shadow: 0 0 18px #ff244f;
-}
-
-.subtitle {
-  color: #7c8da9;
-  letter-spacing: 3px;
-  font-size: 12px;
-}
-
-.badge {
-  display: inline-block;
-  border: 1px solid #087fff;
-  color: #49baff;
-  padding: 8px 13px;
-  border-radius: 5px;
-  font-size: 11px;
-}
-
-.card {
-  background: rgba(12, 17, 31, .94);
-  border: 1px solid #202c42;
-  border-radius: 12px;
-  padding: 20px;
-  margin-bottom: 18px;
-  box-shadow: 0 0 25px #00152b55;
-}
-
-h2 {
-  font-size: 16px;
-  color: #39b8ff;
-  margin-top: 0;
-}
-
-p {
-  color: #9baac0;
-  line-height: 1.7;
-  font-size: 13px;
-}
-
-.terminal {
-  border: 1px solid #26364e;
-  border-radius: 8px;
-  overflow: hidden;
-  background: #05070c;
-}
-
-.terminal-head {
-  padding: 12px;
-  background: #111827;
-  color: #a3b7ce;
-  font-size: 12px;
-}
-
-.dots {
-  color: #ff315b;
-  margin-right: 8px;
-}
-
-#output {
-  height: 230px;
-  overflow-y: auto;
-  padding: 13px;
-  font-size: 12px;
-  line-height: 1.8;
-  overflow-wrap: anywhere;
-}
-
-.line {
-  color: #59e6a5;
-}
-
-.info {
-  color: #58baff;
-}
-
-.error {
-  color: #ff5476;
-}
-
-.input-row {
-  display: flex;
-  padding: 12px;
-  gap: 8px;
-  border-top: 1px solid #1d293b;
-}
-
-.prompt {
-  color: #ff315b;
-  padding-top: 9px;
-}
-
-input {
-  min-width: 0;
-  flex: 1;
-  background: transparent;
-  border: 0;
-  outline: 0;
-  color: #fff;
-  font: inherit;
-  font-size: 13px;
-}
-
-button {
-  background: #10253b;
-  border: 1px solid #168bff;
-  color: #68c7ff;
-  border-radius: 6px;
-  padding: 11px 14px;
-  font: inherit;
-  font-size: 12px;
-  cursor: pointer;
-}
-
-button:active {
-  transform: scale(.97);
-}
-
-.grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
-}
-
-.tool {
-  background: #0c1220;
-  border: 1px solid #26344a;
-  padding: 17px;
-  border-radius: 9px;
-}
-
-.tool h3 {
-  font-size: 13px;
-  color: #ff5476;
-}
-
-.tool p {
-  font-size: 12px;
-}
-
-.tool button {
-  width: 100%;
-}
-
-.result {
-  color: #61e9a5;
-  overflow-wrap: anywhere;
-  font-size: 12px;
-  margin-top: 12px;
-}
-
-footer {
-  text-align: center;
-  color: #63718a;
-  font-size: 11px;
-  padding: 20px 0;
-}
-
-@media(max-width:480px) {
-  main {
-    width: 94%;
-    padding-top: 15px;
-  }
-
-  .card {
-    padding: 14px;
-  }
-
-  .grid {
-    grid-template-columns: 1fr;
-  }
-}
+*{box-sizing:border-box}
+:root{--red:#ff3158;--blue:#19baff;--bg:#080912;--panel:#101321}
+body{margin:0;background:var(--bg);color:#edf4ff;font-family:monospace}
+canvas{position:fixed;inset:0;width:100%;height:100%;opacity:.12;pointer-events:none}
+main{position:relative;width:min(950px,94%);margin:auto;padding:20px 0}
+header{text-align:center;padding:25px 0}
+h1{font-size:clamp(27px,7vw,48px);margin:8px 0;letter-spacing:3px}
+h1 span{color:var(--red);text-shadow:0 0 18px var(--red)}
+.tag{color:var(--blue);font-size:11px;letter-spacing:3px}
+.status{display:inline-block;border:1px solid #24516b;padding:8px 12px;border-radius:5px;color:#69e7b3;font-size:11px}
+nav{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:15px 0 25px}
+nav a{color:var(--blue);text-decoration:none;border:1px solid #26364c;padding:10px;border-radius:5px;font-size:11px}
+.card{background:var(--panel);border:1px solid #283047;border-radius:10px;padding:17px;margin-bottom:16px;box-shadow:0 0 20px #00132b33}
+h2{font-size:14px;color:var(--blue);margin-top:0}
+p,.muted{font-size:12px;color:#a0aec5;line-height:1.7}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.stat{border:1px solid #293248;padding:14px;border-radius:7px;background:#0b0e19}
+.stat b{display:block;font-size:20px;color:var(--red);margin-top:7px}
+input{width:100%;background:#080b13;border:1px solid #303d55;color:white;padding:12px;border-radius:5px;font:inherit;font-size:12px;margin:6px 0 10px}
+button{background:#101d30;color:var(--blue);border:1px solid var(--blue);padding:11px 13px;border-radius:5px;font:inherit;font-size:11px;cursor:pointer}
+button:hover{background:#172b43}
+button:focus-visible,input:focus-visible{outline:2px solid var(--red);outline-offset:2px}
+.full{width:100%}
+.result{font-size:12px;line-height:1.7;overflow-wrap:anywhere;color:#67e8b3;margin-top:10px}
+.terminal{background:#06080e;border:1px solid #28354a;border-radius:7px;overflow:hidden}
+.terminal-head{padding:12px;background:#171b2b;color:#9daec6;font-size:11px}
+#output{height:190px;overflow-y:auto;padding:12px;font-size:12px;line-height:1.8;overflow-wrap:anywhere}
+.line{color:#65e9ad}.info{color:var(--blue)}.error{color:#ff6882}
+.inputrow{display:flex;gap:7px;align-items:center;padding:10px;border-top:1px solid #253047}
+.inputrow input{margin:0;min-width:0;flex:1;border:0;background:transparent}
+.prompt{color:var(--red)}
+footer{text-align:center;padding:20px;color:#66738b;font-size:10px}
+@media(max-width:520px){.grid{grid-template-columns:1fr}main{width:94%}.card{padding:14px}}
 </style>
 </head>
 
 <body>
-
 <canvas id="matrix"></canvas>
 
 <main>
-  <header>
-    <div class="logo">KALL <span>CYBER</span></div>
-    <p class="subtitle">CYBER LAB // LEARN • EXPLORE • SECURE</p>
-    <span class="badge">● LEARNING MODE ACTIVE</span>
-  </header>
+<header>
+  <div class="tag">ADVANCED CYBERSECURITY LAB</div>
+  <h1>KALL <span>CYBER</span> LAB</h1>
+  <p>TERMINAL // SECURITY // DIGITAL DEFENSE</p>
+  <span class="status">● LEARNING MODE ACTIVE</span>
+</header>
 
-  <section class="card">
-    <h2>// SYSTEM OVERVIEW</h2>
-    <p>
-      Selamat datang di KALL CYBER LAB.
-      Laboratorium mini untuk belajar terminal,
-      privasi digital, dan keamanan siber.
-    </p>
-    <p id="clock">SYSTEM TIME: --:--:--</p>
-  </section>
+<nav>
+  <a href="#dashboard">DASHBOARD</a>
+  <a href="#terminal">TERMINAL</a>
+  <a href="#tools">SECURITY TOOLS</a>
+</nav>
 
-  <section class="card">
-    <h2>// INTERACTIVE TERMINAL</h2>
+<section class="card" id="dashboard">
+  <h2>// SYSTEM DASHBOARD</h2>
+  <div class="grid">
+    <div class="stat">LOCAL TIME<b id="clock">--:--:--</b></div>
+    <div class="stat">LAB STATUS<b>ONLINE</b></div>
+  </div>
+  <p>Laboratorium pembelajaran keamanan digital. Tools berjalan di browser; status ONLINE hanya menunjukkan halaman aktif.</p>
+</section>
 
-    <div class="terminal">
-      <div class="terminal-head">
-        <span class="dots">● ● ●</span>
-        kall@cyberlab:~
-      </div>
-
-      <div id="output" aria-live="polite">
-        <div class="line">KALL CYBER LAB [Version 1.0]</div>
-        <div class="info">Ketik help untuk melihat perintah.</div>
-      </div>
-
-      <form id="terminalForm" class="input-row">
-        <span class="prompt">kall $</span>
-        <input
-          id="command"
-          autocomplete="off"
-          placeholder="Ketik perintah..."
-          aria-label="Perintah terminal"
-        >
-        <button type="submit">RUN</button>
-      </form>
+<section class="card" id="terminal">
+  <h2>// TERMINAL PRO</h2>
+  <div class="terminal">
+    <div class="terminal-head">● ● ● &nbsp; kall@cyberlab:~</div>
+    <div id="output" aria-live="polite">
+      <div class="line">KALL CYBER LAB v2.0</div>
+      <div class="info">Ketik help untuk melihat perintah.</div>
     </div>
-  </section>
+    <form id="terminalForm" class="inputrow">
+      <span class="prompt">kall $</span>
+      <input id="command" placeholder="Masukkan perintah..." autocomplete="off" aria-label="Perintah terminal">
+      <button>RUN</button>
+    </form>
+  </div>
+  <p>Gunakan ↑ dan ↓ untuk menelusuri riwayat perintah.</p>
+</section>
 
-  <section class="card">
-    <h2>// CYBER TOOLS</h2>
+<section class="card" id="tools">
+  <h2>// CYBERSECURITY TOOLKIT</h2>
+  <div class="grid">
 
-    <div class="grid">
-      <div class="tool">
-        <h3>01 / PASSWORD GEN</h3>
-        <p>Buat password acak menggunakan generator browser.</p>
-        <button id="generate">GENERATE</button>
-        <div class="result" id="passwordResult"></div>
-        <button id="copyPassword" hidden>COPY PASSWORD</button>
-      </div>
-
-      <div class="tool">
-        <h3>02 / DEVICE INFO</h3>
-        <p>Lihat informasi browser dan layar perangkat.</p>
-        <button id="deviceButton">CHECK DEVICE</button>
-        <div class="result" id="deviceResult"></div>
-      </div>
-
-      <div class="tool">
-        <h3>03 / SECURITY SCAN</h3>
-        <p>Simulasi visual pemindaian untuk pembelajaran.</p>
-        <button id="scanButton">START SIMULATION</button>
-        <div class="result" id="scanResult"></div>
-      </div>
-
-      <div class="tool">
-        <h3>04 / PRIVACY TIPS</h3>
-        <p>Tips sederhana untuk menjaga akun tetap aman.</p>
-        <button id="privacyButton">SHOW TIPS</button>
-        <div class="result" id="privacyResult"></div>
-      </div>
+    <div class="stat">
+      <h2>01 / PASSWORD GENERATOR</h2>
+      <p>Membuat password acak menggunakan generator kriptografis browser.</p>
+      <label for="length">Panjang password (12–48)</label>
+      <input id="length" type="number" min="12" max="48" value="20">
+      <button class="full" id="generate">GENERATE PASSWORD</button>
+      <div class="result" id="passwordResult"></div>
+      <button id="copy" hidden>COPY PASSWORD</button>
     </div>
-  </section>
 
-  <footer>
-    KALL CYBER LAB © 2026<br>
-    EDUCATIONAL PROJECT • USE TECHNOLOGY RESPONSIBLY
-  </footer>
+    <div class="stat">
+      <h2>02 / PASSWORD CHECK</h2>
+      <p>Periksa karakteristik password secara lokal. Password tidak dikirim ke server.</p>
+      <label for="pwcheck">Masukkan password untuk diperiksa</label>
+      <input id="pwcheck" type="password" autocomplete="off" placeholder="Password uji">
+      <button class="full" id="checkPw">CHECK STRENGTH</button>
+      <div class="result" id="pwResult"></div>
+      <p>Jangan masukkan password asli akun penting.</p>
+    </div>
+
+    <div class="stat">
+      <h2>03 / URL QUICK CHECK</h2>
+      <p>Pemeriksaan format dan beberapa tanda yang patut diwaspadai. Bukan pemindai malware.</p>
+      <label for="urlInput">Alamat website</label>
+      <input id="urlInput" type="text" placeholder="https://example.com">
+      <button class="full" id="checkUrl">CHECK URL</button>
+      <div class="result" id="urlResult"></div>
+    </div>
+
+    <div class="stat">
+      <h2>04 / DEVICE INFO</h2>
+      <p>Lihat informasi browser yang tersedia.</p>
+      <button class="full" id="device">CHECK DEVICE</button>
+      <div class="result" id="deviceResult"></div>
+    </div>
+
+    <div class="stat">
+      <h2>05 / SECURITY TIPS</h2>
+      <p>Tips praktis untuk melindungi akun dan perangkat.</p>
+      <button class="full" id="tips">SHOW SECURITY TIPS</button>
+      <div class="result" id="tipsResult"></div>
+    </div>
+
+    <div class="stat">
+      <h2>06 / SCAN SIMULATION</h2>
+      <p>Simulasi visual untuk demonstrasi terminal.</p>
+      <button class="full" id="scan">START DEMO</button>
+      <div class="result" id="scanResult"></div>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+KALL CYBER LAB PRO © 2026<br>
+EDUCATIONAL PROJECT • DIGITAL DEFENSE
+</footer>
 </main>
 
 <script>
 // MATRIX BACKGROUND
-const canvas = document.getElementById("matrix");
-const ctx = canvas.getContext("2d");
-const chars = "01ABCDEF<>/{}[]";
-let drops = [];
-let fontSize = 14;
+const canvas=document.getElementById("matrix");
+const ctx=canvas.getContext("2d");
+const chars="01ABCDEF<>[]{}";
+let drops=[],fontSize=14;
 
-function resizeMatrix() {
-  const dpr = Math.min(window.devicePixelRatio || 1, 2);
-
-  canvas.width = innerWidth * dpr;
-  canvas.height = innerHeight * dpr;
-  canvas.style.width = innerWidth + "px";
-  canvas.style.height = innerHeight + "px";
-
-  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-
-  const columns = Math.ceil(innerWidth / fontSize);
-  drops = Array(columns).fill(1);
+function resize(){
+  const dpr=Math.min(devicePixelRatio||1,2);
+  canvas.width=innerWidth*dpr;
+  canvas.height=innerHeight*dpr;
+  canvas.style.width=innerWidth+"px";
+  canvas.style.height=innerHeight+"px";
+  ctx.setTransform(dpr,0,0,dpr,0,0);
+  drops=Array(Math.ceil(innerWidth/fontSize)).fill(1);
 }
-
-function drawMatrix() {
-  ctx.fillStyle = "rgba(7, 9, 16, 0.12)";
-  ctx.fillRect(0, 0, innerWidth, innerHeight);
-
-  ctx.font = fontSize + "px monospace";
-
-  for (let i = 0; i < drops.length; i++) {
-    ctx.fillStyle = i % 2 ? "#168bff" : "#ff244f";
-
-    const char = chars[
-      Math.floor(Math.random() * chars.length)
-    ];
-
-    ctx.fillText(char, i * fontSize, drops[i] * fontSize);
-
-    if (
-      drops[i] * fontSize > innerHeight &&
-      Math.random() > 0.975
-    ) {
-      drops[i] = 0;
-    }
-
+function draw(){
+  ctx.fillStyle="rgba(8,9,18,.15)";
+  ctx.fillRect(0,0,innerWidth,innerHeight);
+  ctx.font=fontSize+"px monospace";
+  drops.forEach((y,i)=>{
+    ctx.fillStyle=i%2?"#19baff":"#ff3158";
+    ctx.fillText(chars[Math.random()*chars.length|0],i*fontSize,y*fontSize);
+    if(y*fontSize>innerHeight&&Math.random()>.975)drops[i]=0;
     drops[i]++;
-  }
+  });
 }
-
-resizeMatrix();
-window.addEventListener("resize", resizeMatrix);
-setInterval(drawMatrix, 65);
+resize();
+addEventListener("resize",resize);
+setInterval(draw,70);
 
 // CLOCK
-function updateClock() {
-  document.getElementById("clock").textContent =
-    "SYSTEM TIME: " +
+function clock(){
+  document.getElementById("clock").textContent=
     new Date().toLocaleTimeString("id-ID");
 }
+clock();
+setInterval(clock,1000);
 
-updateClock();
-setInterval(updateClock, 1000);
+// SAFE TERMINAL WITH HISTORY
+const output=document.getElementById("output");
+const input=document.getElementById("command");
+let history=[],historyPos=0;
 
-// TERMINAL
-const output = document.getElementById("output");
-const command = document.getElementById("command");
-
-function printLine(text, cls = "line") {
-  const div = document.createElement("div");
-  div.className = cls;
-  div.textContent = text;
+function print(text,cls="line"){
+  const div=document.createElement("div");
+  div.className=cls;
+  div.textContent=text;
   output.appendChild(div);
-  output.scrollTop = output.scrollHeight;
+  while(output.children.length>80)output.firstChild.remove();
+  output.scrollTop=output.scrollHeight;
 }
 
-const commands = {
-  help: () => {
-    printLine("AVAILABLE COMMANDS:", "info");
-    printLine("help    - Show commands");
-    printLine("about   - About KALL CYBER LAB");
-    printLine("date    - Show current date");
-    printLine("device  - Show browser information");
-    printLine("clear   - Clear terminal");
-    printLine("scan    - Run a visual demo");
-    printLine("tips    - Show security tips");
+const cmds={
+  help(){
+    print("help | about | date | device | tips | scan | clear","info");
+    print("Terminal ini adalah simulasi browser, bukan shell sistem.");
   },
-
-  about: () => {
-    printLine("KALL CYBER LAB v1.0");
-    printLine("A browser-based cybersecurity learning project.");
-    printLine("No real systems are scanned.");
+  about(){
+    print("KALL CYBER LAB PRO v2.0");
+    print("Educational cybersecurity tools running locally.");
   },
-
-  date: () => {
-    printLine(new Date().toString());
+  date(){print(new Date().toString(),"info");},
+  device(){
+    print("Browser: "+navigator.userAgent);
+    print("Screen: "+screen.width+"x"+screen.height);
+    print("Language: "+navigator.language);
+    print("Online: "+navigator.onLine);
   },
-
-  device: () => {
-    printLine("Browser: " + navigator.userAgent, "info");
-    printLine(
-      "Screen: " + screen.width + " x " + screen.height
-    );
-    printLine(
-      "Language: " + navigator.language
-    );
-    printLine(
-      "Online status: " +
-      (navigator.onLine ? "Online" : "Offline")
-    );
+  tips(){
+    print("Gunakan password unik dan aktifkan autentikasi dua faktor.");
+    print("Jangan bagikan OTP atau recovery code.");
+    print("Periksa domain sebelum login.");
   },
-
-  clear: () => {
-    output.replaceChildren();
+  scan(){
+    print("DEMO ONLY: tidak ada perangkat atau jaringan yang dipindai.","info");
   },
-
-  scan: () => {
-    printLine("Starting VISUAL DEMONSTRATION...", "info");
-    printLine("Demo complete. No network scan was performed.");
-  },
-
-  tips: () => {
-    printLine("Use unique passwords for every account.");
-    printLine("Enable two-factor authentication.");
-    printLine("Never share verification codes.");
-    printLine("Check links before signing in.");
-  }
+  clear(){output.replaceChildren();}
 };
 
-document.getElementById("terminalForm")
-  .addEventListener("submit", event => {
-    event.preventDefault();
+document.getElementById("terminalForm").addEventListener("submit",e=>{
+  e.preventDefault();
+  const value=input.value.trim().toLowerCase();
+  if(!value)return;
+  print("kall $ "+value,"info");
+  history.push(value);
+  historyPos=history.length;
+  if(cmds[value])cmds[value]();
+  else print("Perintah tidak dikenal. Ketik help.","error");
+  input.value="";
+});
 
-    const value = command.value.trim().toLowerCase();
-    if (!value) return;
+input.addEventListener("keydown",e=>{
+  if(e.key==="ArrowUp"){
+    e.preventDefault();
+    if(historyPos>0)historyPos--;
+    input.value=history[historyPos]||"";
+  }else if(e.key==="ArrowDown"){
+    e.preventDefault();
+    if(historyPos<history.length)historyPos++;
+    input.value=history[historyPos]||"";
+  }
+});
 
-    printLine("kall $ " + value, "info");
-
-    if (commands[value]) {
-      commands[value]();
-    } else {
-      printLine(
-        "Unknown command. Type help to see commands.",
-        "error"
-      );
+// SECURE RANDOM PASSWORD GENERATOR
+let generated="";
+document.getElementById("generate").addEventListener("click",()=>{
+  const len=Number(document.getElementById("length").value);
+  const result=document.getElementById("passwordResult");
+  if(!Number.isInteger(len)||len<12||len>48){
+    result.textContent="Pilih panjang 12 sampai 48 karakter.";
+    return;
+  }
+  if(!crypto.getRandomValues){
+    result.textContent="Secure random generator tidak tersedia.";
+    return;
+  }
+  const alphabet="ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz23456789!@#$%&*_-";
+  const limit=256-(256%alphabet.length);
+  let out="";
+  while(out.length<len){
+    const bytes=new Uint8Array(len*2);
+    crypto.getRandomValues(bytes);
+    for(const b of bytes){
+      if(b<limit)out+=alphabet[b%alphabet.length];
+      if(out.length===len)break;
     }
+  }
+  generated=out;
+  result.textContent=out;
+  document.getElementById("copy").hidden=false;
+});
 
-    command.value = "";
-  });
+document.getElementById("copy").addEventListener("click",async()=>{
+  const result=document.getElementById("passwordResult");
+  try{
+    await navigator.clipboard.writeText(generated);
+    result.textContent="Password berhasil disalin.";
+  }catch{
+    result.textContent="Salin password dari hasil generator secara manual.";
+  }
+});
 
-// PASSWORD GENERATOR
-let currentPassword = "";
+// PASSWORD CHARACTERISTIC CHECK, LOCALLY
+document.getElementById("checkPw").addEventListener("click",()=>{
+  const p=document.getElementById("pwcheck").value;
+  const result=document.getElementById("pwResult");
+  if(!p){result.textContent="Masukkan password uji terlebih dahulu.";return;}
+  let score=0;
+  if(p.length>=12)score++;
+  if(p.length>=16)score++;
+  if(/[a-z]/.test(p)&&/[A-Z]/.test(p))score++;
+  if(/[0-9]/.test(p))score++;
+  if(/[^A-Za-z0-9]/.test(p))score++;
+  const labels=["Sangat mudah ditebak","Perlu diperkuat","Cukup beragam","Karakteristik cukup baik","Karakteristik kuat","Karakteristik sangat beragam"];
+  result.textContent=labels[score]+". Panjang: "+p.length+" karakter. Ini perkiraan sederhana, bukan jaminan password aman.";
+});
 
-document.getElementById("generate")
-  .addEventListener("click", () => {
-    const chars =
-      "ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz23456789!@#$%&*";
-
-    const length = 20;
-    const values = new Uint32Array(length);
-
-    if (!window.crypto?.getRandomValues) {
-      document.getElementById("passwordResult").textContent =
-        "Secure random generator unavailable in this browser.";
+// URL FORMAT CHECK - NO NETWORK REQUESTS
+document.getElementById("checkUrl").addEventListener("click",()=>{
+  const raw=document.getElementById("urlInput").value.trim();
+  const result=document.getElementById("urlResult");
+  if(!raw){result.textContent="Masukkan alamat website.";return;}
+  try{
+    const u=new URL(raw);
+    if(!["https:","http:"].includes(u.protocol)){
+      result.textContent="Skema URL tidak didukung.";
       return;
     }
+    const notes=[];
+    if(u.protocol!=="https:")notes.push("Tidak menggunakan HTTPS.");
+    if(u.username||u.password)notes.push("URL memuat informasi login.");
+    if(u.hostname.startsWith("xn--")||u.hostname.includes(".xn--"))
+      notes.push("Domain menggunakan format IDN/Punycode.");
+    if(/^\d{1,3}(\.\d{1,3}){3}$/.test(u.hostname))
+      notes.push("Alamat menggunakan IP, bukan nama domain biasa.");
+    result.textContent=notes.length
+      ?"Perlu diperiksa: "+notes.join(" ")
+      :"Format URL tidak menunjukkan tanda dasar yang diperiksa. Ini bukan bukti bahwa situs aman.";
+  }catch{
+    result.textContent="Format URL tidak valid. Sertakan https:// atau http://.";
+  }
+});
 
-    crypto.getRandomValues(values);
+// BROWSER DEVICE INFORMATION
+document.getElementById("device").addEventListener("click",()=>{
+  document.getElementById("deviceResult").textContent=
+    "Browser: "+navigator.userAgent+
+    " | Layar: "+screen.width+"x"+screen.height+
+    " | Bahasa: "+navigator.language+
+    " | Online: "+navigator.onLine;
+});
 
-    currentPassword = Array.from(
-      values,
-      n => chars[n % chars.length]
-    ).join("");
+document.getElementById("tips").addEventListener("click",()=>{
+  document.getElementById("tipsResult").textContent=
+    "Gunakan password unik, aktifkan 2FA, perbarui perangkat, periksa alamat domain, dan jangan bagikan OTP.";
+});
 
-    document.getElementById("passwordResult").textContent =
-      currentPassword;
-
-    document.getElementById("copyPassword").hidden = false;
-  });
-
-document.getElementById("copyPassword")
-  .addEventListener("click", async () => {
-    try {
-      await navigator.clipboard.writeText(currentPassword);
-      document.getElementById("passwordResult").textContent =
-        "Password copied!";
-    } catch {
-      document.getElementById("passwordResult").textContent =
-        "Copy unavailable. Select and copy the password manually.";
-    }
-  });
-
-// DEVICE INFO
-document.getElementById("deviceButton")
-  .addEventListener("click", () => {
-    document.getElementById("deviceResult").textContent =
-      "Browser: " + navigator.userAgent +
-      " | Screen: " + screen.width + "x" + screen.height +
-      " | Language: " + navigator.language;
-  });
-
-// VISUAL SCAN SIMULATION
-document.getElementById("scanButton")
-  .addEventListener("click", () => {
-    const result = document.getElementById("scanResult");
-    result.textContent = "Running visual demo...";
-
-    setTimeout(() => {
-      result.textContent =
-        "DEMO COMPLETE: No actual security scan was performed.";
-    }, 1400);
-  });
-
-// PRIVACY TIPS
-document.getElementById("privacyButton")
-  .addEventListener("click", () => {
-    document.getElementById("privacyResult").textContent =
-      "Use unique passwords, enable 2FA, update your phone, " +
-      "and never share OTP codes.";
-  });
+document.getElementById("scan").addEventListener("click",()=>{
+  const result=document.getElementById("scanResult");
+  result.textContent="Menjalankan demonstrasi...";
+  setTimeout(()=>{
+    result.textContent="DEMO SELESAI. Tidak ada jaringan atau perangkat yang dipindai.";
+  },1200);
+});
 </script>
-
 </body>
-      </html>
+</html>
