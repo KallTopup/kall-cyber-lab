@@ -2,358 +2,559 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#080912">
-<title>KALL CYBER LAB PRO</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#09090f">
+<meta name="description" content="KALLTOOLS - Kumpulan alat digital gratis untuk belajar, produktivitas, dan kebutuhan sehari-hari.">
+<title>KALLTOOLS — Digital Toolkit</title>
 
 <style>
+:root {
+  --bg:#09090f;
+  --panel:#12121c;
+  --panel2:#191927;
+  --border:#29293c;
+  --text:#f4f3ff;
+  --muted:#a1a1ba;
+  --purple:#9b6dff;
+  --blue:#5ca8ff;
+  --green:#52e0a0;
+  --red:#ff6685;
+}
 *{box-sizing:border-box}
-:root{--red:#ff3158;--blue:#19baff;--bg:#080912;--panel:#101321}
-body{margin:0;background:var(--bg);color:#edf4ff;font-family:monospace}
-canvas{position:fixed;inset:0;width:100%;height:100%;opacity:.12;pointer-events:none}
-main{position:relative;width:min(950px,94%);margin:auto;padding:20px 0}
-header{text-align:center;padding:25px 0}
-h1{font-size:clamp(27px,7vw,48px);margin:8px 0;letter-spacing:3px}
-h1 span{color:var(--red);text-shadow:0 0 18px var(--red)}
-.tag{color:var(--blue);font-size:11px;letter-spacing:3px}
-.status{display:inline-block;border:1px solid #24516b;padding:8px 12px;border-radius:5px;color:#69e7b3;font-size:11px}
-nav{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:15px 0 25px}
-nav a{color:var(--blue);text-decoration:none;border:1px solid #26364c;padding:10px;border-radius:5px;font-size:11px}
-.card{background:var(--panel);border:1px solid #283047;border-radius:10px;padding:17px;margin-bottom:16px;box-shadow:0 0 20px #00132b33}
-h2{font-size:14px;color:var(--blue);margin-top:0}
-p,.muted{font-size:12px;color:#a0aec5;line-height:1.7}
-.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
-.stat{border:1px solid #293248;padding:14px;border-radius:7px;background:#0b0e19}
-.stat b{display:block;font-size:20px;color:var(--red);margin-top:7px}
-input{width:100%;background:#080b13;border:1px solid #303d55;color:white;padding:12px;border-radius:5px;font:inherit;font-size:12px;margin:6px 0 10px}
-button{background:#101d30;color:var(--blue);border:1px solid var(--blue);padding:11px 13px;border-radius:5px;font:inherit;font-size:11px;cursor:pointer}
-button:hover{background:#172b43}
-button:focus-visible,input:focus-visible{outline:2px solid var(--red);outline-offset:2px}
-.full{width:100%}
-.result{font-size:12px;line-height:1.7;overflow-wrap:anywhere;color:#67e8b3;margin-top:10px}
-.terminal{background:#06080e;border:1px solid #28354a;border-radius:7px;overflow:hidden}
-.terminal-head{padding:12px;background:#171b2b;color:#9daec6;font-size:11px}
-#output{height:190px;overflow-y:auto;padding:12px;font-size:12px;line-height:1.8;overflow-wrap:anywhere}
-.line{color:#65e9ad}.info{color:var(--blue)}.error{color:#ff6882}
-.inputrow{display:flex;gap:7px;align-items:center;padding:10px;border-top:1px solid #253047}
-.inputrow input{margin:0;min-width:0;flex:1;border:0;background:transparent}
-.prompt{color:var(--red)}
-footer{text-align:center;padding:20px;color:#66738b;font-size:10px}
-@media(max-width:520px){.grid{grid-template-columns:1fr}main{width:94%}.card{padding:14px}}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:system-ui,-apple-system,sans-serif;
+}
+button,input,textarea,select{font:inherit}
+button{cursor:pointer}
+.app{max-width:1150px;margin:auto;padding:20px}
+header{
+  display:flex;justify-content:space-between;align-items:center;
+  gap:12px;flex-wrap:wrap;margin-bottom:30px
+}
+.logo{font-size:25px;font-weight:900;letter-spacing:-1px}
+.logo span{color:var(--purple)}
+.badge{
+  font-size:11px;padding:6px 10px;border-radius:20px;
+  background:#211936;color:#c8adff;border:1px solid #42305e
+}
+.hero{
+  padding:30px 0 24px;
+}
+.hero small{color:var(--purple);font-weight:800;letter-spacing:2px}
+.hero h1{
+  font-size:clamp(32px,7vw,57px);
+  line-height:1.08;margin:12px 0;
+  letter-spacing:-2px
+}
+.gradient{
+  background:linear-gradient(100deg,#b89aff,#66b8ff);
+  -webkit-background-clip:text;background-clip:text;color:transparent
+}
+.hero p{color:var(--muted);line-height:1.7;max-width:620px}
+.search{
+  width:100%;padding:14px 16px;border-radius:14px;
+  border:1px solid var(--border);background:var(--panel);
+  color:var(--text);outline:none;margin:10px 0 22px
+}
+.search:focus,input:focus,textarea:focus,select:focus{
+  border-color:var(--purple)!important
+}
+.section-title{font-size:19px;margin:12px 0 16px}
+.grid{
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px
+}
+.card{
+  background:var(--panel);border:1px solid var(--border);
+  border-radius:17px;padding:18px;min-width:0;
+  transition:.2s
+}
+.card:hover{border-color:#66508c;transform:translateY(-2px)}
+.tool-icon{
+  width:44px;height:44px;border-radius:13px;
+  display:grid;place-items:center;font-size:23px;
+  background:linear-gradient(135deg,#2a2045,#18283c);
+  margin-bottom:13px
+}
+.card h3{margin:0 0 7px;font-size:16px}
+.card p{margin:0;color:var(--muted);font-size:13px;line-height:1.5}
+.card button{margin-top:15px}
+.btn{
+  background:linear-gradient(100deg,#9665ff,#648dff);
+  border:0;color:white;padding:10px 14px;border-radius:10px;
+  font-weight:750
+}
+.btn.secondary{
+  background:var(--panel2);border:1px solid var(--border);color:var(--text)
+}
+.btn.danger{background:#49202c;color:#ffb4c4}
+.btn:active{transform:scale(.98)}
+footer{
+  text-align:center;padding:35px 0 20px;color:var(--muted);font-size:12px
+}
+.hidden{display:none!important}
+#toolView{margin-top:18px}
+.tool-head{display:flex;align-items:center;gap:12px;margin-bottom:18px}
+.tool-head h2{margin:0;font-size:23px}
+.tool-head p{margin:4px 0;color:var(--muted);font-size:13px}
+.back{margin-bottom:20px}
+.field{margin:12px 0}
+.field label{display:block;font-size:13px;color:var(--muted);margin-bottom:7px}
+.field input,.field textarea,.field select,.input{
+  width:100%;background:#0c0c15;border:1px solid var(--border);
+  color:var(--text);border-radius:10px;padding:12px;outline:none
+}
+textarea{resize:vertical;min-height:100px}
+.row{display:flex;gap:8px;flex-wrap:wrap}
+.row>*{flex:1;min-width:100px}
+.result{
+  padding:14px;background:#0c0c15;border:1px solid var(--border);
+  border-radius:12px;margin-top:12px;overflow-wrap:anywhere
+}
+.big-result{font-size:27px;font-weight:850;margin:12px 0}
+.list{display:grid;gap:9px;margin-top:15px}
+.list-item{
+  display:flex;align-items:center;gap:10px;
+  background:#0c0c15;border:1px solid var(--border);
+  padding:12px;border-radius:10px;overflow-wrap:anywhere
+}
+.list-item .item-text{flex:1;min-width:0}
+.list-item.done .item-text{text-decoration:line-through;color:var(--muted)}
+.small{font-size:12px;color:var(--muted)}
+.calc-display{
+  width:100%;text-align:right;font-size:30px;padding:20px 12px;
+  background:#09090f;color:white;border:1px solid var(--border);
+  border-radius:12px;margin-bottom:12px
+}
+.calc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.calc-grid button{padding:17px 5px;font-size:18px}
+.timer{
+  font-size:clamp(48px,12vw,78px);font-weight:900;
+  text-align:center;letter-spacing:-3px;padding:20px 0
+}
+.progress{height:7px;background:#29293c;border-radius:9px;overflow:hidden}
+.progress div{height:100%;width:0;background:linear-gradient(90deg,var(--purple),var(--blue))}
+.note-status{color:var(--green);font-size:12px;margin-top:8px}
+.empty{color:var(--muted);font-size:13px;padding:12px 0}
+@media(max-width:760px){
+  .grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+  .app{padding:16px}
+  .card{padding:14px}
+  .hero{padding-top:20px}
+}
+@media(max-width:390px){
+  .grid{grid-template-columns:1fr}
+}
 </style>
 </head>
 
 <body>
-<canvas id="matrix"></canvas>
-
-<main>
+<div class="app">
 <header>
-  <div class="tag">ADVANCED CYBERSECURITY LAB</div>
-  <h1>KALL <span>CYBER</span> LAB</h1>
-  <p>TERMINAL // SECURITY // DIGITAL DEFENSE</p>
-  <span class="status">● LEARNING MODE ACTIVE</span>
+  <div class="logo">KALL<span>TOOLS</span></div>
+  <div class="badge">✦ FREE DIGITAL TOOLS</div>
 </header>
 
-<nav>
-  <a href="#dashboard">DASHBOARD</a>
-  <a href="#terminal">TERMINAL</a>
-  <a href="#tools">SECURITY TOOLS</a>
-</nav>
-
-<section class="card" id="dashboard">
-  <h2>// SYSTEM DASHBOARD</h2>
-  <div class="grid">
-    <div class="stat">LOCAL TIME<b id="clock">--:--:--</b></div>
-    <div class="stat">LAB STATUS<b>ONLINE</b></div>
+<section id="home">
+  <div class="hero">
+    <small>YOUR DAILY DIGITAL COMPANION</small>
+    <h1>Kerja lebih mudah.<br><span class="gradient">Fokus tanpa batas.</span></h1>
+    <p>Kumpulan alat digital gratis untuk belajar, mengatur waktu, mengelola tugas, dan membantu aktivitas sehari-hari. Semua dalam satu tempat.</p>
   </div>
-  <p>Laboratorium pembelajaran keamanan digital. Tools berjalan di browser; status ONLINE hanya menunjukkan halaman aktif.</p>
+
+  <input id="search" class="search" placeholder="🔎 Cari tools yang kamu butuhkan..." oninput="filterTools()">
+
+  <h2 class="section-title">✦ Semua Tools</h2>
+  <div class="grid" id="toolGrid"></div>
 </section>
 
-<section class="card" id="terminal">
-  <h2>// TERMINAL PRO</h2>
-  <div class="terminal">
-    <div class="terminal-head">● ● ● &nbsp; kall@cyberlab:~</div>
-    <div id="output" aria-live="polite">
-      <div class="line">KALL CYBER LAB v2.0</div>
-      <div class="info">Ketik help untuk melihat perintah.</div>
-    </div>
-    <form id="terminalForm" class="inputrow">
-      <span class="prompt">kall $</span>
-      <input id="command" placeholder="Masukkan perintah..." autocomplete="off" aria-label="Perintah terminal">
-      <button>RUN</button>
-    </form>
+<section id="toolView" class="hidden">
+  <button class="btn secondary back" onclick="goHome()">← Kembali ke semua tools</button>
+  <div class="tool-head">
+    <div class="tool-icon" id="toolIcon">🛠️</div>
+    <div><h2 id="toolTitle">Tool</h2><p id="toolDesc"></p></div>
   </div>
-  <p>Gunakan ↑ dan ↓ untuk menelusuri riwayat perintah.</p>
-</section>
-
-<section class="card" id="tools">
-  <h2>// CYBERSECURITY TOOLKIT</h2>
-  <div class="grid">
-
-    <div class="stat">
-      <h2>01 / PASSWORD GENERATOR</h2>
-      <p>Membuat password acak menggunakan generator kriptografis browser.</p>
-      <label for="length">Panjang password (12–48)</label>
-      <input id="length" type="number" min="12" max="48" value="20">
-      <button class="full" id="generate">GENERATE PASSWORD</button>
-      <div class="result" id="passwordResult"></div>
-      <button id="copy" hidden>COPY PASSWORD</button>
-    </div>
-
-    <div class="stat">
-      <h2>02 / PASSWORD CHECK</h2>
-      <p>Periksa karakteristik password secara lokal. Password tidak dikirim ke server.</p>
-      <label for="pwcheck">Masukkan password untuk diperiksa</label>
-      <input id="pwcheck" type="password" autocomplete="off" placeholder="Password uji">
-      <button class="full" id="checkPw">CHECK STRENGTH</button>
-      <div class="result" id="pwResult"></div>
-      <p>Jangan masukkan password asli akun penting.</p>
-    </div>
-
-    <div class="stat">
-      <h2>03 / URL QUICK CHECK</h2>
-      <p>Pemeriksaan format dan beberapa tanda yang patut diwaspadai. Bukan pemindai malware.</p>
-      <label for="urlInput">Alamat website</label>
-      <input id="urlInput" type="text" placeholder="https://example.com">
-      <button class="full" id="checkUrl">CHECK URL</button>
-      <div class="result" id="urlResult"></div>
-    </div>
-
-    <div class="stat">
-      <h2>04 / DEVICE INFO</h2>
-      <p>Lihat informasi browser yang tersedia.</p>
-      <button class="full" id="device">CHECK DEVICE</button>
-      <div class="result" id="deviceResult"></div>
-    </div>
-
-    <div class="stat">
-      <h2>05 / SECURITY TIPS</h2>
-      <p>Tips praktis untuk melindungi akun dan perangkat.</p>
-      <button class="full" id="tips">SHOW SECURITY TIPS</button>
-      <div class="result" id="tipsResult"></div>
-    </div>
-
-    <div class="stat">
-      <h2>06 / SCAN SIMULATION</h2>
-      <p>Simulasi visual untuk demonstrasi terminal.</p>
-      <button class="full" id="scan">START DEMO</button>
-      <div class="result" id="scanResult"></div>
-    </div>
-
-  </div>
+  <div class="card" id="toolContent"></div>
 </section>
 
 <footer>
-KALL CYBER LAB PRO © 2026<br>
-EDUCATIONAL PROJECT • DIGITAL DEFENSE
+  <div class="logo">KALL<span>TOOLS</span></div>
+  <p>Gratis digunakan · Dibuat untuk produktivitas sehari-hari</p>
+  <p>© <span id="year"></span> KALLTOOLS</p>
 </footer>
-</main>
+</div>
 
 <script>
-// MATRIX BACKGROUND
-const canvas=document.getElementById("matrix");
-const ctx=canvas.getContext("2d");
-const chars="01ABCDEF<>[]{}";
-let drops=[],fontSize=14;
+const tools = [
+ {id:'notes',icon:'📝',name:'Catatan Digital',desc:'Simpan ide dan catatan penting.'},
+ {id:'todo',icon:'✅',name:'To-Do List',desc:'Atur tugas dan tandai yang selesai.'},
+ {id:'pomodoro',icon:'⏱️',name:'Pomodoro Timer',desc:'Bantu fokus dengan sesi belajar.'},
+ {id:'calc',icon:'🧮',name:'Kalkulator',desc:'Hitung angka dengan cepat.'},
+ {id:'schedule',icon:'📅',name:'Jadwal Belajar',desc:'Simpan jadwal kegiatanmu.'},
+ {id:'money',icon:'💰',name:'Catatan Keuangan',desc:'Catat pemasukan dan pengeluaran.'},
+ {id:'grade',icon:'📊',name:'Kalkulator Nilai',desc:'Hitung rata-rata nilai.'},
+ {id:'password',icon:'🔐',name:'Generator Password',desc:'Buat kata sandi acak.'},
+ {id:'text',icon:'📋',name:'Penghitung Teks',desc:'Hitung kata, karakter, dan kalimat.'}
+];
 
-function resize(){
-  const dpr=Math.min(devicePixelRatio||1,2);
-  canvas.width=innerWidth*dpr;
-  canvas.height=innerHeight*dpr;
-  canvas.style.width=innerWidth+"px";
-  canvas.style.height=innerHeight+"px";
-  ctx.setTransform(dpr,0,0,dpr,0,0);
-  drops=Array(Math.ceil(innerWidth/fontSize)).fill(1);
-}
-function draw(){
-  ctx.fillStyle="rgba(8,9,18,.15)";
-  ctx.fillRect(0,0,innerWidth,innerHeight);
-  ctx.font=fontSize+"px monospace";
-  drops.forEach((y,i)=>{
-    ctx.fillStyle=i%2?"#19baff":"#ff3158";
-    ctx.fillText(chars[Math.random()*chars.length|0],i*fontSize,y*fontSize);
-    if(y*fontSize>innerHeight&&Math.random()>.975)drops[i]=0;
-    drops[i]++;
-  });
-}
-resize();
-addEventListener("resize",resize);
-setInterval(draw,70);
-
-// CLOCK
-function clock(){
-  document.getElementById("clock").textContent=
-    new Date().toLocaleTimeString("id-ID");
-}
-clock();
-setInterval(clock,1000);
-
-// SAFE TERMINAL WITH HISTORY
-const output=document.getElementById("output");
-const input=document.getElementById("command");
-let history=[],historyPos=0;
-
-function print(text,cls="line"){
-  const div=document.createElement("div");
-  div.className=cls;
-  div.textContent=text;
-  output.appendChild(div);
-  while(output.children.length>80)output.firstChild.remove();
-  output.scrollTop=output.scrollHeight;
-}
-
-const cmds={
-  help(){
-    print("help | about | date | device | tips | scan | clear","info");
-    print("Terminal ini adalah simulasi browser, bukan shell sistem.");
-  },
-  about(){
-    print("KALL CYBER LAB PRO v2.0");
-    print("Educational cybersecurity tools running locally.");
-  },
-  date(){print(new Date().toString(),"info");},
-  device(){
-    print("Browser: "+navigator.userAgent);
-    print("Screen: "+screen.width+"x"+screen.height);
-    print("Language: "+navigator.language);
-    print("Online: "+navigator.onLine);
-  },
-  tips(){
-    print("Gunakan password unik dan aktifkan autentikasi dua faktor.");
-    print("Jangan bagikan OTP atau recovery code.");
-    print("Periksa domain sebelum login.");
-  },
-  scan(){
-    print("DEMO ONLY: tidak ada perangkat atau jaringan yang dipindai.","info");
-  },
-  clear(){output.replaceChildren();}
+const $ = id => document.getElementById(id);
+const store = {
+ get(key,fallback){
+   try{
+     const v=localStorage.getItem('kalltools_'+key);
+     return v===null?fallback:JSON.parse(v);
+   }catch(e){return fallback}
+ },
+ set(key,value){
+   try{localStorage.setItem('kalltools_'+key,JSON.stringify(value));}
+   catch(e){}
+ }
 };
 
-document.getElementById("terminalForm").addEventListener("submit",e=>{
-  e.preventDefault();
-  const value=input.value.trim().toLowerCase();
-  if(!value)return;
-  print("kall $ "+value,"info");
-  history.push(value);
-  historyPos=history.length;
-  if(cmds[value])cmds[value]();
-  else print("Perintah tidak dikenal. Ketik help.","error");
-  input.value="";
-});
+function esc(s){
+ return String(s).replace(/[&<>"']/g,c=>({
+ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
+ })[c]);
+}
+function renderGrid(query=''){
+ $('toolGrid').innerHTML=tools.filter(t=>
+  (t.name+' '+t.desc).toLowerCase().includes(query.toLowerCase())
+ ).map(t=>`
+  <div class="card">
+   <div class="tool-icon">${t.icon}</div>
+   <h3>${t.name}</h3><p>${t.desc}</p>
+   <button class="btn" onclick="openTool('${t.id}')">Buka Tool →</button>
+  </div>
+ `).join('')||'<p class="empty">Tools tidak ditemukan.</p>';
+}
+function filterTools(){renderGrid($('search').value)}
+function goHome(){
+ $('toolView').classList.add('hidden');
+ $('home').classList.remove('hidden');
+ window.scrollTo({top:0,behavior:'smooth'});
+}
+function openTool(id){
+ const t=tools.find(x=>x.id===id);if(!t)return;
+ $('home').classList.add('hidden');
+ $('toolView').classList.remove('hidden');
+ $('toolIcon').textContent=t.icon;
+ $('toolTitle').textContent=t.name;
+ $('toolDesc').textContent=t.desc;
+ const c=$('toolContent');
+ c.innerHTML='';
+ ({
+  notes:notesTool,todo:todoTool,pomodoro:pomodoroTool,
+  calc:calcTool,schedule:scheduleTool,money:moneyTool,
+  grade:gradeTool,password:passwordTool,text:textTool
+ })[id](c);
+ window.scrollTo({top:0,behavior:'smooth'});
+}
 
-input.addEventListener("keydown",e=>{
-  if(e.key==="ArrowUp"){
-    e.preventDefault();
-    if(historyPos>0)historyPos--;
-    input.value=history[historyPos]||"";
-  }else if(e.key==="ArrowDown"){
-    e.preventDefault();
-    if(historyPos<history.length)historyPos++;
-    input.value=history[historyPos]||"";
-  }
-});
+/* CATATAN */
+function notesTool(c){
+ c.innerHTML=`
+ <div class="field"><label>Judul catatan</label><input id="noteTitle" placeholder="Contoh: Ide proyek"></div>
+ <div class="field"><label>Isi catatan</label><textarea id="noteBody" placeholder="Tulis catatanmu di sini..."></textarea></div>
+ <button class="btn" onclick="saveNote()">Simpan Catatan</button>
+ <div class="note-status" id="noteStatus"></div><div id="noteList" class="list"></div>`;
+ drawNotes();
+}
+function drawNotes(){
+ const notes=store.get('notes',[]);
+ $('noteList').innerHTML=notes.map((n,i)=>`
+ <div class="list-item"><div class="item-text"><b>${esc(n.title)}</b>
+ <div class="small">${esc(n.body).replace(/\n/g,'<br>')}</div></div>
+ <button class="btn secondary" onclick="editNote(${i})">Edit</button>
+ <button class="btn danger" onclick="deleteNote(${i})">×</button></div>
+ `).join('')||'<div class="empty">Belum ada catatan.</div>';
+}
+function saveNote(){
+ const title=$('noteTitle').value.trim(),body=$('noteBody').value.trim();
+ if(!title&&!body){alert('Isi judul atau catatan dulu.');return}
+ const notes=store.get('notes',[]);
+ notes.unshift({title:title||'Tanpa judul',body});
+ store.set('notes',notes);$('noteTitle').value='';$('noteBody').value='';
+ $('noteStatus').textContent='Catatan tersimpan di perangkat ini.';
+ drawNotes();
+}
+function deleteNote(i){
+ const a=store.get('notes',[]);a.splice(i,1);store.set('notes',a);drawNotes();
+}
+function editNote(i){
+ const a=store.get('notes',[]),n=a[i];if(!n)return;
+ $('noteTitle').value=n.title;$('noteBody').value=n.body;
+ a.splice(i,1);store.set('notes',a);drawNotes();
+ window.scrollTo({top:0,behavior:'smooth'});
+}
 
-// SECURE RANDOM PASSWORD GENERATOR
-let generated="";
-document.getElementById("generate").addEventListener("click",()=>{
-  const len=Number(document.getElementById("length").value);
-  const result=document.getElementById("passwordResult");
-  if(!Number.isInteger(len)||len<12||len>48){
-    result.textContent="Pilih panjang 12 sampai 48 karakter.";
-    return;
-  }
-  if(!crypto.getRandomValues){
-    result.textContent="Secure random generator tidak tersedia.";
-    return;
-  }
-  const alphabet="ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz23456789!@#$%&*_-";
-  const limit=256-(256%alphabet.length);
-  let out="";
-  while(out.length<len){
-    const bytes=new Uint8Array(len*2);
-    crypto.getRandomValues(bytes);
-    for(const b of bytes){
-      if(b<limit)out+=alphabet[b%alphabet.length];
-      if(out.length===len)break;
-    }
-  }
-  generated=out;
-  result.textContent=out;
-  document.getElementById("copy").hidden=false;
-});
+/* TO-DO LIST */
+function todoTool(c){
+ c.innerHTML=`
+ <div class="field"><label>Tugas baru</label><input id="todoInput" placeholder="Apa yang perlu dikerjakan?" onkeydown="if(event.key==='Enter')addTodo()"></div>
+ <button class="btn" onclick="addTodo()">+ Tambah Tugas</button>
+ <div class="row" style="margin-top:15px"><div id="todoCount" class="small"></div><button class="btn secondary" onclick="clearDone()">Hapus yang selesai</button></div>
+ <div id="todoList" class="list"></div>`;
+ drawTodos();
+}
+function addTodo(){
+ const input=$('todoInput'),text=input.value.trim();if(!text)return;
+ const a=store.get('todos',[]);a.unshift({text,done:false});
+ store.set('todos',a);input.value='';drawTodos();
+}
+function drawTodos(){
+ const a=store.get('todos',[]);
+ $('todoCount').textContent=`${a.filter(x=>x.done).length} dari ${a.length} tugas selesai`;
+ $('todoList').innerHTML=a.map((x,i)=>`
+ <div class="list-item ${x.done?'done':''}">
+ <input type="checkbox" ${x.done?'checked':''} onchange="toggleTodo(${i})">
+ <div class="item-text">${esc(x.text)}</div>
+ <button class="btn danger" onclick="deleteTodo(${i})">×</button></div>
+ `).join('')||'<div class="empty">Belum ada tugas. Tambahkan tugas pertamamu!</div>';
+}
+function toggleTodo(i){
+ const a=store.get('todos',[]);a[i].done=!a[i].done;store.set('todos',a);drawTodos();
+}
+function deleteTodo(i){
+ const a=store.get('todos',[]);a.splice(i,1);store.set('todos',a);drawTodos();
+}
+function clearDone(){
+ store.set('todos',store.get('todos',[]).filter(x=>!x.done));drawTodos();
+}
 
-document.getElementById("copy").addEventListener("click",async()=>{
-  const result=document.getElementById("passwordResult");
+/* POMODORO */
+let timerInterval=null,timerEnd=0,timerRemain=25*60,isBreak=false;
+function pomodoroTool(c){
+ clearInterval(timerInterval);timerInterval=null;
+ timerRemain=isBreak?5*60:25*60;
+ c.innerHTML=`
+ <p class="small" id="timerLabel" style="text-align:center">SESI FOKUS</p>
+ <div class="timer" id="timerDisplay">25:00</div>
+ <div class="progress"><div id="timerProgress"></div></div>
+ <div class="row" style="margin-top:20px">
+ <button class="btn" id="timerStart" onclick="startTimer()">▶ Mulai</button>
+ <button class="btn secondary" onclick="pauseTimer()">Ⅱ Jeda</button>
+ <button class="btn secondary" onclick="resetTimer()">↺ Ulang</button></div>
+ <div class="field"><label>Durasi fokus (menit)</label><input id="focusMin" type="number" min="1" max="180" value="25"></div>
+ <div class="field"><label>Durasi istirahat (menit)</label><input id="breakMin" type="number" min="1" max="60" value="5"></div>
+ <p class="small">Timer berjalan selama halaman ini tetap terbuka.</p>`;
+ updateTimer();
+}
+function updateTimer(){
+ const d=$('timerDisplay');if(!d)return;
+ const sec=Math.max(0,timerRemain);
+ d.textContent=String(Math.floor(sec/60)).padStart(2,'0')+':'+String(sec%60).padStart(2,'0');
+ $('timerLabel').textContent=isBreak?'SESI ISTIRAHAT':'SESI FOKUS';
+ const total=(isBreak?Number($('breakMin')?.value||5):Number($('focusMin')?.value||25))*60;
+ $('timerProgress').style.width=(100-Math.min(100,sec/Math.max(1,total)*100))+'%';
+}
+function startTimer(){
+ if(timerInterval)return;
+ timerEnd=Date.now()+timerRemain*1000;
+ timerInterval=setInterval(()=>{
+  timerRemain=Math.max(0,Math.ceil((timerEnd-Date.now())/1000));updateTimer();
+  if(timerRemain<=0){
+   clearInterval(timerInterval);timerInterval=null;
+   alert(isBreak?'Waktu istirahat selesai!':'Sesi fokus selesai! Saatnya istirahat.');
+  }
+ },250);
+}
+function pauseTimer(){
+ if(timerInterval){timerRemain=Math.max(0,Math.ceil((timerEnd-Date.now())/1000));clearInterval(timerInterval);timerInterval=null;updateTimer()}
+}
+function resetTimer(){
+ pauseTimer();
+ isBreak=false;timerRemain=Math.max(1,Number($('focusMin')?.value||25))*60;updateTimer();
+}
+
+/* KALKULATOR */
+let calcExpression='';
+function calcTool(c){
+ calcExpression='';
+ c.innerHTML=`
+ <input id="calcDisplay" class="calc-display" value="0" readonly>
+ <div class="calc-grid">
+ ${['C','(',')','÷','7','8','9','×','4','5','6','−','1','2','3','+','±','0','.','='].map(x=>
+ `<button class="btn ${['C','=','÷','×','−','+'].includes(x)?'':'secondary'}" onclick="calcPress('${x}')">${x}</button>`
+ ).join('')}
+ </div>
+ <p class="small" style="margin-top:12px">Kalkulator dasar. Gunakan tanda kurung untuk mengatur operasi.</p>`;
+}
+function calcPress(x){
+ if(x==='C'){calcExpression='';}
+ else if(x==='±'){
+  if(calcExpression.startsWith('-'))calcExpression=calcExpression.slice(1);
+  else calcExpression='-'+calcExpression;
+ }else if(x==='='){
   try{
-    await navigator.clipboard.writeText(generated);
-    result.textContent="Password berhasil disalin.";
-  }catch{
-    result.textContent="Salin password dari hasil generator secara manual.";
+   let s=calcExpression.replace(/÷/g,'/').replace(/×/g,'*').replace(/−/g,'-');
+   if(!s||!/^[0-9+\-*/().\s]+$/.test(s))throw Error();
+   let result=Function('"use strict";return ('+s+')')();
+   if(!Number.isFinite(result))throw Error();
+   calcExpression=String(Math.round((result+Number.EPSILON)*1e10)/1e10);
+  }catch(e){calcExpression='Error'}
+ }else{
+  if(calcExpression==='Error')calcExpression='';
+  if(calcExpression.length<100)calcExpression+=x;
+ }
+ $('calcDisplay').value=calcExpression||'0';
+}
+
+/* JADWAL */
+function scheduleTool(c){
+ c.innerHTML=`
+ <div class="field"><label>Nama kegiatan</label><input id="schName" placeholder="Contoh: Belajar matematika"></div>
+ <div class="row">
+ <div class="field"><label>Tanggal</label><input id="schDate" type="date"></div>
+ <div class="field"><label>Waktu</label><input id="schTime" type="time"></div>
+ </div>
+ <button class="btn" onclick="addSchedule()">+ Tambah Jadwal</button>
+ <div id="schList" class="list"></div>`;
+ drawSchedules();
+}
+function addSchedule(){
+ const name=$('schName').value.trim(),date=$('schDate').value,time=$('schTime').value;
+ if(!name||!date||!time){alert('Lengkapi nama, tanggal, dan waktu.');return}
+ const a=store.get('schedule',[]);a.push({name,date,time});
+ a.sort((x,y)=>(x.date+x.time).localeCompare(y.date+y.time));
+ store.set('schedule',a);$('schName').value='';drawSchedules();
+}
+function drawSchedules(){
+ $('schList').innerHTML=store.get('schedule',[]).map((x,i)=>`
+ <div class="list-item"><div class="item-text"><b>${esc(x.name)}</b>
+ <div class="small">${esc(x.date)} · ${esc(x.time)}</div></div>
+ <button class="btn danger" onclick="deleteSchedule(${i})">×</button></div>
+ `).join('')||'<div class="empty">Belum ada jadwal.</div>';
+}
+function deleteSchedule(i){
+ const a=store.get('schedule',[]);a.splice(i,1);store.set('schedule',a);drawSchedules();
+}
+
+/* KEUANGAN */
+function moneyTool(c){
+ c.innerHTML=`
+ <div class="field"><label>Deskripsi transaksi</label><input id="moneyName" placeholder="Contoh: Uang jajan"></div>
+ <div class="row">
+ <div class="field"><label>Jenis</label><select id="moneyType"><option value="in">Pemasukan (+)</option><option value="out">Pengeluaran (-)</option></select></div>
+ <div class="field"><label>Nominal (Rp)</label><input id="moneyAmount" type="number" min="1" placeholder="10000"></div>
+ </div>
+ <button class="btn" onclick="addMoney()">Simpan Transaksi</button>
+ <div class="result" id="moneySummary"></div>
+ <div id="moneyList" class="list"></div>
+ <p class="small">Data hanya tersimpan di browser ini. Bukan aplikasi rekening bank.</p>`;
+ drawMoney();
+}
+function rupiah(n){return 'Rp '+Number(n).toLocaleString('id-ID')}
+function addMoney(){
+ const name=$('moneyName').value.trim(),type=$('moneyType').value,amount=Number($('moneyAmount').value);
+ if(!name||!Number.isFinite(amount)||amount<=0){alert('Isi deskripsi dan nominal yang valid.');return}
+ const a=store.get('money',[]);a.unshift({name,type,amount,date:new Date().toLocaleDateString('id-ID')});
+ store.set('money',a);$('moneyName').value='';$('moneyAmount').value='';drawMoney();
+}
+function drawMoney(){
+ const a=store.get('money',[]);
+ const inc=a.filter(x=>x.type==='in').reduce((s,x)=>s+x.amount,0);
+ const out=a.filter(x=>x.type==='out').reduce((s,x)=>s+x.amount,0);
+ $('moneySummary').innerHTML=`<div class="small">Total pemasukan</div><b style="color:var(--green)">${rupiah(inc)}</b><br><br><div class="small">Total pengeluaran</div><b style="color:var(--red)">${rupiah(out)}</b><hr style="border-color:var(--border)"><div class="small">Selisih tercatat</div><div class="big-result">${rupiah(inc-out)}</div>`;
+ $('moneyList').innerHTML=a.map((x,i)=>`
+ <div class="list-item"><div class="item-text"><b>${esc(x.name)}</b><div class="small">${esc(x.date)}</div></div>
+ <b style="color:${x.type==='in'?'var(--green)':'var(--red)'}">${x.type==='in'?'+':'−'}${rupiah(x.amount)}</b>
+ <button class="btn danger" onclick="deleteMoney(${i})">×</button></div>
+ `).join('')||'<div class="empty">Belum ada transaksi.</div>';
+}
+function deleteMoney(i){
+ const a=store.get('money',[]);a.splice(i,1);store.set('money',a);drawMoney();
+}
+
+/* KALKULATOR NILAI */
+function gradeTool(c){
+ c.innerHTML=`
+ <p class="small">Masukkan nilai yang ingin dirata-ratakan. Gunakan titik untuk desimal.</p>
+ <div class="field"><label>Daftar nilai (pisahkan dengan koma)</label><textarea id="gradeInput" placeholder="Contoh: 85, 90, 78, 92"></textarea></div>
+ <button class="btn" onclick="calculateGrade()">Hitung Rata-rata</button>
+ <div id="gradeResult"></div>`;
+}
+function calculateGrade(){
+ const raw=$('gradeInput').value.trim();
+ const a=raw.split(/[,;\s]+/).filter(Boolean).map(Number);
+ if(!a.length||a.some(x=>!Number.isFinite(x)||x<0||x>100)){
+  $('gradeResult').innerHTML='<div class="result">Masukkan nilai angka antara 0 dan 100.</div>';return;
+ }
+ const avg=a.reduce((s,x)=>s+x,0)/a.length;
+ $('gradeResult').innerHTML=`<div class="result"><div class="small">Jumlah nilai</div><div class="big-result">${a.length}</div><div class="small">Rata-rata</div><div class="big-result">${avg.toFixed(2)}</div><div class="small">Kategori sederhana: ${avg>=90?'Sangat baik':avg>=80?'Baik':avg>=70?'Cukup':'Perlu ditingkatkan'}</div></div>`;
+}
+
+/* GENERATOR PASSWORD */
+function passwordTool(c){
+ c.innerHTML=`
+ <div class="field"><label>Panjang kata sandi (8–64 karakter)</label><input id="passLength" type="number" min="8" max="64" value="16"></div>
+ <div class="field"><label><input id="passUpper" type="checkbox" checked> Huruf besar</label>
+ <label><input id="passLower" type="checkbox" checked> Huruf kecil</label>
+ <label><input id="passNum" type="checkbox" checked> Angka</label>
+ <label><input id="passSymbol" type="checkbox" checked> Simbol</label></div>
+ <button class="btn" onclick="generatePassword()">Buat Kata Sandi</button>
+ <div class="result" id="passResult">Tekan tombol untuk membuat kata sandi.</div>
+ <button class="btn secondary" style="margin-top:10px" onclick="copyPassword()">Salin Kata Sandi</button>
+ <p class="small">Kata sandi dibuat di browser. Jangan bagikan kata sandimu kepada orang lain.</p>`;
+}
+function generatePassword(){
+ const len=Math.max(8,Math.min(64,Number($('passLength').value)||16));
+ let groups=[];
+ if($('passUpper').checked)groups.push('ABCDEFGHJKLMNPQRSTUVWXYZ');
+ if($('passLower').checked)groups.push('abcdefghijkmnopqrstuvwxyz');
+ if($('passNum').checked)groups.push('23456789');
+ if($('passSymbol').checked)groups.push('!@#$%*-_+=');
+ if(!groups.length){alert('Pilih minimal satu jenis karakter.');return}
+ const all=groups.join('');
+ const randomInt=max=>{
+  if(window.crypto?.getRandomValues){
+   const limit=Math.floor(4294967296/max)*max;
+   const arr=new Uint32Array(1);let n;
+   do{crypto.getRandomValues(arr);n=arr[0]}while(n>=limit);
+   return n%max;
   }
-});
+  return Math.floor(Math.random()*max);
+ };
+ let out=groups.map(g=>g[randomInt(g.length)]);
+ while(out.length<len)out.push(all[randomInt(all.length)]);
+ for(let i=out.length-1;i>0;i--){
+  const j=randomInt(i+1);[out[i],out[j]]=[out[j],out[i]];
+ }
+ $('passResult').textContent=out.slice(0,len).join('');
+}
+async function copyPassword(){
+ const text=$('passResult').textContent;
+ try{await navigator.clipboard.writeText(text);alert('Kata sandi disalin.')}
+ catch(e){alert('Salin kata sandi secara manual.')}
+}
 
-// PASSWORD CHARACTERISTIC CHECK, LOCALLY
-document.getElementById("checkPw").addEventListener("click",()=>{
-  const p=document.getElementById("pwcheck").value;
-  const result=document.getElementById("pwResult");
-  if(!p){result.textContent="Masukkan password uji terlebih dahulu.";return;}
-  let score=0;
-  if(p.length>=12)score++;
-  if(p.length>=16)score++;
-  if(/[a-z]/.test(p)&&/[A-Z]/.test(p))score++;
-  if(/[0-9]/.test(p))score++;
-  if(/[^A-Za-z0-9]/.test(p))score++;
-  const labels=["Sangat mudah ditebak","Perlu diperkuat","Cukup beragam","Karakteristik cukup baik","Karakteristik kuat","Karakteristik sangat beragam"];
-  result.textContent=labels[score]+". Panjang: "+p.length+" karakter. Ini perkiraan sederhana, bukan jaminan password aman.";
-});
+/* PENGHITUNG TEKS */
+function textTool(c){
+ c.innerHTML=`
+ <div class="field"><label>Teks kamu</label><textarea id="textInput" placeholder="Mulai ketik atau tempel teks di sini..." oninput="countText()"></textarea></div>
+ <div class="grid">
+ <div class="result"><div class="small">Kata</div><div class="big-result" id="wordCount">0</div></div>
+ <div class="result"><div class="small">Karakter</div><div class="big-result" id="charCount">0</div></div>
+ <div class="result"><div class="small">Tanpa spasi</div><div class="big-result" id="noSpaceCount">0</div></div>
+ </div>
+ <div class="result"><div class="small">Kalimat</div><div class="big-result" id="sentenceCount">0</div></div>
+ <button class="btn secondary" style="margin-top:10px" onclick="copyText()">Salin Teks</button>`;
+}
+function countText(){
+ const s=$('textInput').value;
+ $('wordCount').textContent=(s.trim().match(/\S+/g)||[]).length;
+ $('charCount').textContent=s.length;
+ $('noSpaceCount').textContent=s.replace(/\s/g,'').length;
+ $('sentenceCount').textContent=(s.match(/[.!?]+(?=\s|$)/g)||[]).length;
+}
+async function copyText(){
+ try{await navigator.clipboard.writeText($('textInput').value);alert('Teks disalin.')}
+ catch(e){alert('Salin teks secara manual.')}
+}
 
-// URL FORMAT CHECK - NO NETWORK REQUESTS
-document.getElementById("checkUrl").addEventListener("click",()=>{
-  const raw=document.getElementById("urlInput").value.trim();
-  const result=document.getElementById("urlResult");
-  if(!raw){result.textContent="Masukkan alamat website.";return;}
-  try{
-    const u=new URL(raw);
-    if(!["https:","http:"].includes(u.protocol)){
-      result.textContent="Skema URL tidak didukung.";
-      return;
-    }
-    const notes=[];
-    if(u.protocol!=="https:")notes.push("Tidak menggunakan HTTPS.");
-    if(u.username||u.password)notes.push("URL memuat informasi login.");
-    if(u.hostname.startsWith("xn--")||u.hostname.includes(".xn--"))
-      notes.push("Domain menggunakan format IDN/Punycode.");
-    if(/^\d{1,3}(\.\d{1,3}){3}$/.test(u.hostname))
-      notes.push("Alamat menggunakan IP, bukan nama domain biasa.");
-    result.textContent=notes.length
-      ?"Perlu diperiksa: "+notes.join(" ")
-      :"Format URL tidak menunjukkan tanda dasar yang diperiksa. Ini bukan bukti bahwa situs aman.";
-  }catch{
-    result.textContent="Format URL tidak valid. Sertakan https:// atau http://.";
-  }
-});
-
-// BROWSER DEVICE INFORMATION
-document.getElementById("device").addEventListener("click",()=>{
-  document.getElementById("deviceResult").textContent=
-    "Browser: "+navigator.userAgent+
-    " | Layar: "+screen.width+"x"+screen.height+
-    " | Bahasa: "+navigator.language+
-    " | Online: "+navigator.onLine;
-});
-
-document.getElementById("tips").addEventListener("click",()=>{
-  document.getElementById("tipsResult").textContent=
-    "Gunakan password unik, aktifkan 2FA, perbarui perangkat, periksa alamat domain, dan jangan bagikan OTP.";
-});
-
-document.getElementById("scan").addEventListener("click",()=>{
-  const result=document.getElementById("scanResult");
-  result.textContent="Menjalankan demonstrasi...";
-  setTimeout(()=>{
-    result.textContent="DEMO SELESAI. Tidak ada jaringan atau perangkat yang dipindai.";
-  },1200);
-});
+$('year').textContent=new Date().getFullYear();
+renderGrid();
 </script>
 </body>
 </html>
